@@ -6,7 +6,7 @@ from PIL import Image
 from os.path import isfile, join
 import numpy as np
 
-def get_hsv(folderpath):
+def get_average_hsv(folderpath):
     imlist = [f for f in os.listdir(folderpath) if isfile(join(folderpath, f))]
     
     # Assuming all images are the same size, get dimensions of first image
@@ -28,11 +28,25 @@ def get_hsv(folderpath):
     # Generate, save and preview final image
     avg=Image.fromarray(arr,mode="RGB")
     avg.save(folderpath + "/Average.png")
-    avg.show()
-
+    # avg.show()
+    fig, ax = plt.subplots()
+    ax.set_title("Color Histogram Plot")
+    ax.set_xlabel("Saturation")
+    ax.set_ylabel("Hue")
     avg_img = cv.imread(folderpath+"/Average.png")
     avg_hsv = cv.cvtColor(avg_img,cv.COLOR_BGR2HSV)
     hist = cv.calcHist( [avg_hsv], [0, 1], None, [180, 256], [0, 180, 0, 256] )
     plt.imshow(hist,interpolation = 'nearest')
-    plt.show()
+    fig.savefig("HSV/"+ folderpath +" - Map.png")
+    fig, ax = plt.subplots()
+    ax.set_title("Color Histogram Plot")
+    ax.set_xlabel("Bins")
+    ax.set_ylabel("Intensity")
+    for i, col in enumerate(['b', 'g', 'r']):
+        hist = cv.calcHist([avg_img], [i], None, [256], [0, 256])
+        plt.plot(hist, color = col)
+        plt.xlim([0, 256])
+    fig.savefig("HSV/"+ folderpath +" - Histogram.png")
+
+    # plt.close('all')
     print("Finished")

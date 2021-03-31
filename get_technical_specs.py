@@ -1,7 +1,8 @@
 from tkinter import Tk # from tkinter import Tk for Python 3.x
 from tkinter.filedialog import askopenfilename
 from convert_to_png import convert_to_png
-from get_hsv import get_hsv
+from get_realtime_hsv import get_realtime_hsv
+from get_average_hsv import get_average_hsv
 from edge_detection import edge_detection
 import os
 
@@ -19,6 +20,7 @@ if not os.path.exists(newdir[0]):
 if not os.path.exists("edges"):
     os.makedirs("edges")
 
-convert_to_png(filename, newdir[0])
-# get_hsv(newdir[0])
-edge_detection(filename,newdir[0])
+# convert_to_png(filename, newdir[0])
+# get_realtime_hsv(filename, newdir[0])
+get_average_hsv(newdir[0])
+# edge_detection(filename,newdir[0])

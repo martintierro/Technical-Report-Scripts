@@ -13,6 +13,7 @@ def convert_to_png(filename, folderpath):
 
     frame_counter = 0
 
+    print("Currently converting video to frames")
     while True:
         ret, frame = capture.read()
         if frame is None:
@@ -24,7 +25,7 @@ def convert_to_png(filename, folderpath):
         keyboard = cv.waitKey(30)
         if keyboard == 'q' or keyboard == 27:
             break
-
+    print("Finished")
 
     # When everything done, release the video capture and video write objects
     capture.release()

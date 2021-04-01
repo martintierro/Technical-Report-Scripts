@@ -23,7 +23,7 @@ if not os.path.exists("edges"):
 if not os.path.exists("Edge Count"):
     os.makedirs("Edge Count")
 
-# convert_to_png(filename, newdir[0])
-# get_realtime_hsv(filename, newdir[0])
-# get_average_hsv(newdir[0])
+convert_to_png(filename, newdir[0])
+get_realtime_hsv(filename, newdir[0])
+get_average_hsv(newdir[0])
 edge_detection(filename,newdir[0])

@@ -1,8 +1,8 @@
 from tkinter import Tk # from tkinter import Tk for Python 3.x
 from tkinter.filedialog import askopenfilename
 from convert_to_png import convert_to_png
-from get_realtime_hsv import get_realtime_hsv
-from get_average_hsv import get_average_hsv
+from get_realtime_color_histogram import get_realtime_color_histogram
+from get_average_color_histogram import get_average_color_histogram
 from edge_detection import edge_detection
 import os
 
@@ -30,6 +30,6 @@ if not os.path.exists("HSV Videos"):
     os.makedirs("HSV Videos")
 
 convert_to_png(filename, newdir[0])
-get_realtime_hsv(filename, newdir[0])
-get_average_hsv(newdir[0])
+get_realtime_color_histogram(filename, newdir[0])
+get_average_color_histogram(newdir[0])
 edge_detection(filename,newdir[0])

@@ -23,6 +23,12 @@ if not os.path.exists("edges"):
 if not os.path.exists("Edge Count"):
     os.makedirs("Edge Count")
 
+if not os.path.exists("HSV"):
+    os.makedirs("HSV")
+
+if not os.path.exists("HSV Videos"):
+    os.makedirs("HSV Videos")
+
 convert_to_png(filename, newdir[0])
 get_realtime_hsv(filename, newdir[0])
 get_average_hsv(newdir[0])

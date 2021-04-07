@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
 import csv
+import os
 
 def edge_detection(filename, video_name):
     cap = cv.VideoCapture(filename)
@@ -13,7 +14,7 @@ def edge_detection(filename, video_name):
     vid_codec = cv.VideoWriter_fourcc(*'mp4v')
 
     # define codec and create VideoWriter object
-    out = cv.VideoWriter(f"edges/"+video_name+"(Edge).mp4", vid_codec, 30, (frame_width, frame_height))
+    out = cv.VideoWriter(f"Edge Videos/"+video_name+" (Edge).mp4", vid_codec, 30, (frame_width, frame_height))
     scale = 1
     delta = 0
     ddepth = cv.CV_16S
@@ -49,8 +50,11 @@ def edge_detection(filename, video_name):
                 frame_count = frame_count + 1
                 total_edge_count = total_edge_count + nzCount
 
+                cv.imwrite("Edge Videos/" + video_name + " temp.png", grad)
+                edge_frame = cv.imread("Edge Videos/" + video_name + " temp.png")
+
                 # save video frame
-                out.write(grad)
+                out.write(edge_frame)
                 # display frame
                 cv.imshow('Video', grad)
                 # press `q` to exit
@@ -63,6 +67,7 @@ def edge_detection(filename, video_name):
         csv_writer.writerow(["AVERAGE", average_edge_count])
         print("Finished")
     # release VideoCapture()
+    os.remove("Edge Videos/" + video_name + " temp.png")
     cap.release()
     # close all frames and video windows
     cv.destroyAllWindows()

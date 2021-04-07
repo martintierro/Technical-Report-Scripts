@@ -17,8 +17,8 @@ newdir = fn.split(".")
 if not os.path.exists(newdir[0]):
     os.makedirs(newdir[0])
 
-if not os.path.exists("edges"):
-    os.makedirs("edges")
+if not os.path.exists("Edge Videos"):
+    os.makedirs("Edge Videos")
 
 if not os.path.exists("Edge Count"):
     os.makedirs("Edge Count")

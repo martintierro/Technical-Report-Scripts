@@ -30,6 +30,6 @@ if not os.path.exists("HSV Videos"):
     os.makedirs("HSV Videos")
 
 convert_to_png(filename, newdir[0])
-get_realtime_color_histogram(filename, newdir[0])
-get_average_color_histogram(newdir[0])
-edge_detection(filename,newdir[0])
+# get_realtime_color_histogram(filename, newdir[0])
+# get_average_color_histogram(newdir[0])
+# edge_detection(filename,newdir[0])

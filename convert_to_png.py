@@ -19,7 +19,7 @@ def convert_to_png(filename, folderpath):
         if frame is None:
             break
         
-        cv.imwrite(folderpath +"/Frame " + str(frame_counter) +'.png',frame)
+        cv.imwrite("Frames/" + folderpath +"/Frame " + str(frame_counter) +'.png',frame)
         frame_counter = frame_counter + 1
         
         keyboard = cv.waitKey(30)

@@ -37,13 +37,14 @@ def get_realtime_color_histogram(filename, video_name):
     else:
         lineGray, = ax.plot(np.arange(bins), np.zeros((bins,1)), c='k', lw=lw)
     ax.set_xlim(0, bins-1)
-    ax.set_ylim(0, 1)
+    # ax.set_ylim(0, 1)
     plt.ion()
     plt.show()
 
     out = cv.VideoWriter(f"HSV Videos/"+video_name+" - HSV.mp4", vid_codec, 30, (frame_width, frame_height))
 
     # Grab, process, and display video frames. Update plot line object(s).
+    run_flag = True
     while True:
         (grabbed, frame) = capture.read()
 
@@ -67,13 +68,22 @@ def get_realtime_color_histogram(filename, video_name):
             lineR.set_ydata(histogramR)
             lineG.set_ydata(histogramG)
             lineB.set_ydata(histogramB)
+            maxR = max(histogramR)
+            maxG = max(histogramG)
+            maxB = max(histogramB)
         else:
             gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
             cv.imshow('Grayscale', gray)
             histogram = cv.calcHist([gray], [0], None, [bins], [0, 255]) / numPixels
             lineGray.set_ydata(histogram)
+        maxY = max(maxR, maxG, maxB)
+
+        if(run_flag):
+            ax.set_ylim(0, maxY + 0.025)
+            run_flag = False
+
         fig.canvas.draw()
-        fig.savefig("temp.png")
+        fig.savefig("HSV Videos/" + video_name + " temp.png")
 
         hist_frame  = cv.imread("HSV Videos/" + video_name + " temp.png")
         out.write(hist_frame)

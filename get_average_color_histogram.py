@@ -7,10 +7,10 @@ from os.path import isfile, join
 import numpy as np
 
 def get_average_color_histogram(folderpath):
-    imlist = [f for f in os.listdir(folderpath) if isfile(join(folderpath, f))]
+    imlist = [f for f in os.listdir("Frames/"+folderpath) if isfile(join("Frames/"+folderpath, f))]
     
     # Assuming all images are the same size, get dimensions of first image
-    w,h=Image.open(folderpath + "/" + imlist[0]).size
+    w,h=Image.open("Frames/"+folderpath + "/" + imlist[0]).size
     N=len(imlist)
 
     # Create a numpy array of floats to store the average (assume RGB images)
@@ -26,10 +26,10 @@ def get_average_color_histogram(folderpath):
     ax.set_zlabel("Saturation")
     x = 1
     for im in imlist:
-        imarr=np.array(Image.open(folderpath+"/"+im),dtype=np.float)
+        imarr=np.array(Image.open("Frames/"+folderpath+"/"+im),dtype=np.float)
         arr=arr+imarr/N
 
-        img = cv.imread(folderpath+"/"+im)
+        img = cv.imread("Frames/"+folderpath+"/"+im)
         hsv = cv.cvtColor(img,cv.COLOR_BGR2HSV)
         h, s, v = cv.split(hsv)
         y = np.average(h)
@@ -46,7 +46,7 @@ def get_average_color_histogram(folderpath):
 
     # Generate, save and preview final image
     avg=Image.fromarray(arr,mode="RGB")
-    avg.save(folderpath + "/Average.png")
+    avg.save("Frames/"+folderpath + "/Average.png")
     # avg.show()
     
     #HSV Plot
@@ -59,7 +59,7 @@ def get_average_color_histogram(folderpath):
     # plt.show()
     # fig.savefig("HSV/"+ folderpath +" - Scatter Plot.png")
     
-    avg_img = cv.imread(folderpath+"/Average.png")
+    avg_img = cv.imread("Frames/"+folderpath+"/Average.png")
     #RGB Graph
     fig, ax = plt.subplots()
     ax.set_title("Color Histogram Plot")

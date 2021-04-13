@@ -14,8 +14,11 @@ temp = filename.split("/")
 fn = temp[-1]
 newdir = fn.split(".")
 
-if not os.path.exists(newdir[0]):
-    os.makedirs(newdir[0])
+if not os.path.exists("Frames"):
+    os.makedirs("Frames")
+
+if not os.path.exists("Frames/" + newdir[0]):
+    os.makedirs("Frames/" + newdir[0])
 
 if not os.path.exists("Edge Videos"):
     os.makedirs("Edge Videos")
@@ -30,6 +33,6 @@ if not os.path.exists("HSV Videos"):
     os.makedirs("HSV Videos")
 
 convert_to_png(filename, newdir[0])
-# get_realtime_color_histogram(filename, newdir[0])
-# get_average_color_histogram(newdir[0])
-# edge_detection(filename,newdir[0])
+get_realtime_color_histogram(filename, newdir[0])
+get_average_color_histogram(newdir[0])
+edge_detection(filename,newdir[0])

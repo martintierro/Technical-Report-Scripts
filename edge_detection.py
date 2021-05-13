@@ -12,9 +12,10 @@ def edge_detection(filename, video_name):
     frame_width = int(cap.get(3))
     frame_height = int(cap.get(4))
     vid_codec = cv.VideoWriter_fourcc(*'mp4v')
+    fps = cap.get(cv.CAP_PROP_FPS)
 
     # define codec and create VideoWriter object
-    out = cv.VideoWriter(f"Edge Videos/"+video_name+" (Edge).mp4", vid_codec, 30, (frame_width, frame_height))
+    out = cv.VideoWriter(f"Edge Videos/"+video_name+" (Edge).mp4", vid_codec, fps, (frame_width, frame_height))
     scale = 1
     delta = 0
     ddepth = cv.CV_16S

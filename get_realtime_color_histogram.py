@@ -13,6 +13,7 @@ def get_realtime_color_histogram(filename, video_name):
     frame_width = 640
     frame_height = 480
     vid_codec = cv.VideoWriter_fourcc(*'mp4v')
+    fps = capture.get(cv.CAP_PROP_FPS)
     
     color = 'rgb'
     bins = 16
@@ -41,7 +42,7 @@ def get_realtime_color_histogram(filename, video_name):
     plt.ion()
     plt.show()
 
-    out = cv.VideoWriter(f"HSV Videos/"+video_name+" - HSV.mp4", vid_codec, 30, (frame_width, frame_height))
+    out = cv.VideoWriter(f"HSV Videos/"+video_name+" - HSV.mp4", vid_codec, fps, (frame_width, frame_height))
 
     # Grab, process, and display video frames. Update plot line object(s).
     run_flag = True

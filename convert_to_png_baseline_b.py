@@ -14,10 +14,10 @@ def convert_to_png(filename, folderpath):
 
     frame_counter = 0
 
-    if not os.path.exists("D:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath):
-        os.makedirs("D:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath)
-    if not os.path.exists("D:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath + "\\hr"):
-        os.makedirs("D:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath+ "\\hr")
+    if not os.path.exists("E:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath):
+        os.makedirs("E:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath)
+    if not os.path.exists("E:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath + "\\hr"):
+        os.makedirs("E:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath+ "\\hr")
 
 
     print("Currently converting video to frames")
@@ -27,7 +27,7 @@ def convert_to_png(filename, folderpath):
             break
         
         # cv.imwrite(folderpath +"/Frame " + str(frame_counter) +'.png',frame)
-        cv.imwrite("D:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath + "\\hr\\hr_" + str(frame_counter) +'.png',frame)
+        cv.imwrite("E:\\Projects\\Thesis\\Baseline B\\SOF-VSR\\TIP\\data\\test\\Set\\" + folderpath + "\\hr\\hr_" + str(frame_counter) +'.png',frame)
         frame_counter = frame_counter + 1
         
         keyboard = cv.waitKey(30)
